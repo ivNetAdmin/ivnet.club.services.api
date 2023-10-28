@@ -1,7 +1,13 @@
-﻿using ivnet.club.services.api.Startup;
-using System;
-using System.Web.Http;
+﻿
 //5K0l02&64
+using Autofac;
+using Autofac.Integration.WebApi;
+using ivnet.club.services.api.Services;
+using ivnet.club.services.api.Startup;
+using System;
+using System.Reflection;
+using System.Web.Http;
+
 namespace ivnet.club.services.api
 {
     public class Global : System.Web.HttpApplication
@@ -9,6 +15,18 @@ namespace ivnet.club.services.api
         protected void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            var containerbuilder = new ContainerBuilder();
+
+            containerbuilder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+            //containerbuilder.RegisterType<DataService>().As<IDataService>().InstancePerLifetimeScope();
+            containerbuilder.RegisterType<DataService>().AsSelf().InstancePerRequest();
+
+            var container = containerbuilder.Build();
+            var resolver = new AutofacWebApiDependencyResolver(container);
+
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
 
         protected void Session_Start(object sender, EventArgs e)
