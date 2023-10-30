@@ -3,6 +3,7 @@
 using Autofac;
 using Autofac.Integration.WebApi;
 using ivnet.club.services.api.Services;
+using ivnet.club.services.api.Services.Interfaces;
 using ivnet.club.services.api.Startup;
 using System;
 using System.Reflection;
@@ -20,9 +21,8 @@ namespace ivnet.club.services.api
 
             containerbuilder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            //containerbuilder.RegisterType<DataService>().As<IDataService>().InstancePerLifetimeScope();
-            containerbuilder.RegisterType<DataService>().AsSelf().InstancePerRequest();
-
+            containerbuilder.RegisterType<DataService>().AsSelf();
+            
             var container = containerbuilder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
 

@@ -14,9 +14,9 @@ namespace ivnet.club.services.api.Controllers
             _dataService = dataService;
         }
         // GET api/RinkBookings
-        public IHttpActionResult Get()
+        public IEnumerable<RinkBooking> Get()
         {
-            return Ok(_dataService.GetRinkBookings());
+            return _dataService.FindAll();
         }
     }
 }

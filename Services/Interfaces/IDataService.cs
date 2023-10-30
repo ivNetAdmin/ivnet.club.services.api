@@ -1,10 +1,11 @@
 ﻿using ivnet.club.services.api.Models;
+using LiteDB;
 using System.Collections.Generic;
 
 namespace ivnet.club.services.api.Services.Interfaces
 {
     public interface IDataService
     {
-        List<RinkBooking> GetRinkBookings();
+        IEnumerable<RinkBooking> FindAll();
     }
 }
