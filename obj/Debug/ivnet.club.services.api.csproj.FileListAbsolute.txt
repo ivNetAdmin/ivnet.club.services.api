@@ -1,3 +1,4 @@
+C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.csproj.CoreCompileInputs.cache
 C:\Users\bp\source\repos\ivnet.club.services.api\bin\ivnet.club.services.api.dll.config
 C:\Users\bp\source\repos\ivnet.club.services.api\bin\ivnet.club.services.api.dll
 C:\Users\bp\source\repos\ivnet.club.services.api\bin\ivnet.club.services.api.pdb
@@ -88,7 +89,6 @@ C:\Users\bp\source\repos\ivnet.club.services.api\bin\System.Web.Http.xml
 C:\Users\bp\source\repos\ivnet.club.services.api\bin\System.Web.Http.Cors.xml
 C:\Users\bp\source\repos\ivnet.club.services.api\bin\System.Web.Http.WebHost.xml
 C:\Users\bp\source\repos\ivnet.club.services.api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.csproj.CoreCompileInputs.cache
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.csproj.CopyComplete
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.dll
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.pdb
