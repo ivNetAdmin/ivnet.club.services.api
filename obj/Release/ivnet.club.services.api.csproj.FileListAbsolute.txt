@@ -81,3 +81,15 @@ C:\Users\bp\source\repos\ivnet.club.services.api\obj\Release\ivnet.club.services
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Release\ivnet.club.services.api.csproj.CopyComplete
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Release\ivnet.club.services.api.dll
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Release\ivnet.club.services.api.pdb
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Autofac.dll
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Autofac.Integration.WebApi.dll
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\LiteDB.dll
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Autofac.pdb
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Autofac.xml
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Autofac.Integration.WebApi.pdb
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Autofac.Integration.WebApi.xml
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\LiteDB.xml
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\System.Diagnostics.DiagnosticSource.xml
