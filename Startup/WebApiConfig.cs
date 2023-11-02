@@ -16,10 +16,17 @@ namespace ivnet.club.services.api.Startup
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            // Route to index.html
+            config.Routes.MapHttpRoute(
+                name: "Index",
+                routeTemplate: "{id}.html",
+                defaults: new { id = "index" });
+
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                defaults: new  { id = RouteParameter.Optional }
             );
 
             config.Formatters.Add(new BrowserJsonFormatter());

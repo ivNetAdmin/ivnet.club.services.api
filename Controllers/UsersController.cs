@@ -107,10 +107,18 @@ namespace ivnet.club.services.api.Controllers
         public IHttpActionResult Patch(string id, User user)
         {
             var data = _dataService.FindById(id);
-            data.Fullname = user.Fullname;
-            data.Dietary = user.Dietary;
-            data.Medical = user.Medical;
-            data.Telephone = user.Telephone;
+
+            if (user.Password != data.Password)
+            {
+                data.Password = user.Password;
+            }
+            else
+            {
+                data.Fullname = user.Fullname;
+                data.Dietary = user.Dietary;
+                data.Medical = user.Medical;
+                data.Telephone = user.Telephone;
+            }
 
             _dataService.Patch(data);
 

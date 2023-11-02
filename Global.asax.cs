@@ -3,7 +3,6 @@
 using Autofac;
 using Autofac.Integration.WebApi;
 using ivnet.club.services.api.Services;
-using ivnet.club.services.api.Services.Interfaces;
 using ivnet.club.services.api.Startup;
 using System;
 using System.Reflection;
