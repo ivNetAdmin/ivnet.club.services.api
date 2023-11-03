@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA3x1pPFrO3UarCe3wUr3p6QAAAAACAAAAAAAQZgAAAAEAACAAAAASUr39FvEcKWX01/zssdtFceft4FhoKfJULDP5evE7HAAAAAAOgAAAAAIAACAAAABeO8+bPASJ2eQ/pOCLVSXiGNLUEYI221jVo6kDMlRlayAAAADQUB/5cEOsByCw3SoXHyzuAMnH9ZohI8Wn/Zi3yNoEtEAAAADs308ISiMS+tlwR/uLGTeAVkULpxwvk7+dkil9dHWPpesjWN8AuQYVyoF/ACwkx9IGjRYM/DT8PsvGpRWSbByr</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ivnet.co.uk/www</_PublishTargetUrl>
+    <History>False|2023-11-02T23:12:24.5966718Z;</History>
+  </PropertyGroup>
+</Project>

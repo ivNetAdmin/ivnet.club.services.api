@@ -92,4 +92,3 @@ C:\Users\bp\source\repos\ivnet.club.services.api\bin\Microsoft.CodeDom.Providers
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.csproj.CopyComplete
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.dll
 C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.pdb
-C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.csproj.AssemblyReference.cache

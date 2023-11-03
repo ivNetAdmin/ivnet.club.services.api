@@ -18,8 +18,7 @@ namespace ivnet.club.services.api.Services
         {
             using (var db = new LiteDatabase(_dbConStr))
             {
-                //LoadClubCodes(db);
-                return db.GetCollection<ClubCode>("clubCodes").FindAll();
+                return db.GetCollection<ClubCode>("ClubCodes").FindAll();
             }
         }
 
@@ -27,7 +26,7 @@ namespace ivnet.club.services.api.Services
         {
             using (var db = new LiteDatabase(_dbConStr))
             {
-                return db.GetCollection<ClubCode>("clubCodes").FindById(id);
+                return db.GetCollection<ClubCode>("ClubCodes").FindById(id);
             }
         }
 
@@ -35,34 +34,7 @@ namespace ivnet.club.services.api.Services
         {
             using (var db = new LiteDatabase(_dbConStr))
             {
-                return db.GetCollection<ClubCode>("clubCodes").FindOne(Query.EQ("Code", code));
-            }
-        }
-
-        private void LoadClubCodes(LiteDatabase db)
-        {
-            var codes = new List<ClubCode>
-                {
-                    new ClubCode
-                    {
-                       Id = Guid.NewGuid().ToString(),
-                        Code = "TLBC01",
-                        Name = "Tring Lawn Bowls Club"
-                    },
-
-                    new ClubCode
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                       Code = "FHIBC",
-                        Name = "Foxhill Indoor Bowls Club"
-                    }
-                };
-
-            var collection = db.GetCollection<ClubCode>("clubCodes");
-
-            foreach (ClubCode code in codes)
-            {
-                collection.Insert(code);
+                return db.GetCollection<ClubCode>("ClubCodes").FindOne(Query.EQ("Code", code));
             }
         }
     }

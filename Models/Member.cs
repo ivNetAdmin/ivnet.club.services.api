@@ -2,7 +2,7 @@
 
 namespace ivnet.club.services.api.Models
 {
-    public class User
+    public class Member
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }

@@ -6,16 +6,16 @@ using System.Web.Http;
 
 namespace ivnet.club.services.api.Controllers
 {
-    public class UsersController : ApiController
+    public class MembersController : ApiController
     {
-        private readonly UserDataService _dataService;
+        private readonly MemberDataService _dataService;
 
-        public UsersController(UserDataService dataService)
+        public MembersController(MemberDataService dataService)
         {
             _dataService = dataService;
         }
 
-        [Route("users")]
+        [Route("members")]
         [HttpGet]
         public IHttpActionResult Get()
         {
@@ -23,7 +23,7 @@ namespace ivnet.club.services.api.Controllers
             return Ok(items);
         }
 
-        [Route("users/{id}")]
+        [Route("members/{id}")]
         [HttpGet]
         public IHttpActionResult Get(string id)
         {
@@ -47,7 +47,7 @@ namespace ivnet.club.services.api.Controllers
 
         }
 
-        [Route("users/email/{email}/clubcode/{clubcode}")]
+        [Route("members/email/{email}/clubcode/{clubcode}")]
         [HttpGet]
         public IHttpActionResult GetByEmailAndClubCode(string email, string clubcode)
         {
@@ -70,7 +70,7 @@ namespace ivnet.club.services.api.Controllers
             }
         }
 
-        [Route("users/username/{userName}")]
+        [Route("members/username/{userName}")]
         [HttpGet]
         public IHttpActionResult GetByUserName(string userName)
         {
@@ -93,18 +93,18 @@ namespace ivnet.club.services.api.Controllers
             }
         }
 
-        [Route("users")]
+        [Route("members")]
         [HttpPost]
-        public IHttpActionResult Post(User user)
+        public IHttpActionResult Post(Member user)
         {
             _dataService.Add(user);
 
             return Ok();
         }
 
-        [Route("users/{id}")]
+        [Route("members/{id}")]
         [HttpPatch]
-        public IHttpActionResult Patch(string id, User user)
+        public IHttpActionResult Patch(string id, Member user)
         {
             var data = _dataService.FindById(id);
 

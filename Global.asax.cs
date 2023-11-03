@@ -20,9 +20,10 @@ namespace ivnet.club.services.api
 
             containerbuilder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
+            containerbuilder.RegisterType<ConfigDataService>().AsSelf();
             containerbuilder.RegisterType<RinkBookingDataService>().AsSelf();
             containerbuilder.RegisterType<ClubCodeDataService>().AsSelf();
-            containerbuilder.RegisterType<UserDataService>().AsSelf();
+            containerbuilder.RegisterType<MemberDataService>().AsSelf();
             
             var container = containerbuilder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
