@@ -12,6 +12,10 @@ namespace ivnet.club.services.api.Services.Interfaces
 
         IEnumerable<Member> FindByEmailAndClubCode(string email, string clubcode);
 
+        IEnumerable<Member> FindByClubCode(string clubcode);
+
+        Member FindByUsernameAndPassword(string username, string password);
+
         void Add(Member user);
 
         void Patch(Member user);

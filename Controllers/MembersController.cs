@@ -1,6 +1,9 @@
-﻿using ivnet.club.services.api.Models;
+﻿using ivnet.club.services.api.Helpers;
+using ivnet.club.services.api.Models;
 using ivnet.club.services.api.Services;
+using ivnet.club.services.api.Services.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
@@ -8,7 +11,7 @@ namespace ivnet.club.services.api.Controllers
 {
     public class MembersController : ApiController
     {
-        private readonly MemberDataService _dataService;
+        private readonly IMemberDataService _dataService;
 
         public MembersController(MemberDataService dataService)
         {
@@ -19,8 +22,17 @@ namespace ivnet.club.services.api.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var items = _dataService.FindAll();
-            return Ok(items);
+            var memberList = new List<Member>();
+            var members = _dataService.FindAll();
+            
+            foreach(Member member in members)
+            {
+                member.Password = string.Empty;
+                member.Email = string.Empty;
+                memberList.Add(member);
+            }
+
+            return Ok(memberList);
         }
 
         [Route("members/{id}")]
@@ -29,11 +41,13 @@ namespace ivnet.club.services.api.Controllers
         {
             try
             {
-                var data = _dataService.FindById(id);
+                var member = _dataService.FindById(id);
 
-                if (data != null)
+                if (member != null)
                 {
-                    return Ok(data);
+                    member.Password = string.Empty;
+                    member.Email = string.Empty;
+                    return Ok(member);
                 }
                 else
                 {
@@ -53,16 +67,64 @@ namespace ivnet.club.services.api.Controllers
         {
             try
             {
-                var data = _dataService.FindByEmailAndClubCode(email, clubcode);
+                var members = _dataService.FindByEmailAndClubCode(email, clubcode);
 
-                if (data != null && data.Any())
+                if (members != null && members.Any())
                 {
-                    return Ok(data);
+                    var memberList = new List<Member>();
+                    foreach (Member member in members)
+                    {
+                        member.Password = string.Empty;
+                        memberList.Add(member);
+                    }
+
+                    return Ok(memberList);
                 }
                 else
                 {
                     return NotFound();
                 }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [Route("members/authenticate/{username}/{password}")]
+        [HttpGet]
+        public IHttpActionResult GetByUsernameAndPassword(string username, string password)
+        {
+            try
+            {
+                var member = _dataService.FindByUsernameAndPassword(username, password);
+
+                if (member != null)
+                {
+                    member.Auth = JWTHelper.GenerateToken(member.Id);
+                    member.Password = string.Empty;
+                    member.Email = string.Empty;
+                    return Ok(member);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [Route("members/clubcode/{clubcode}")]
+        [HttpGet]
+        public IHttpActionResult GetByClubCode(string clubcode)
+        {
+            try
+            {
+                var members = _dataService.FindByClubCode(clubcode);
+                return Ok(members);
             }
             catch (Exception ex)
             {
@@ -76,11 +138,13 @@ namespace ivnet.club.services.api.Controllers
         {
             try
             {
-                var data = _dataService.FindByUsername(userName);
+                var member = _dataService.FindByUsername(userName);
 
-                if (data != null)
+                if (member != null)
                 {
-                    return Ok(data);
+                    member.Password = string.Empty;
+                    member.Email = string.Empty;
+                    return Ok(member);
                 }
                 else
                 {
@@ -95,11 +159,14 @@ namespace ivnet.club.services.api.Controllers
 
         [Route("members")]
         [HttpPost]
-        public IHttpActionResult Post(Member user)
+        public IHttpActionResult Post(Member member)
         {
-            _dataService.Add(user);
+            _dataService.Add(member);
 
-            return Ok();
+            member.Auth = JWTHelper.GenerateToken(member.Id);
+            member.Password = string.Empty;
+            member.Email = string.Empty;
+            return Ok(member);
         }
 
         [Route("members/{id}")]

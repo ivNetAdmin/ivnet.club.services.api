@@ -44,8 +44,25 @@ namespace ivnet.club.services.api.Services
             }
         }
 
+        public IEnumerable<Member> FindByClubCode(string clubcode)
+        {
+            using (var db = new LiteDatabase(_dbConStr))
+            {
+                return db.GetCollection<Member>("Members").Find(x => x.ClubCode == clubcode);
+            }
+        }
+
+        public Member FindByUsernameAndPassword(string username, string password)
+        {
+            using (var db = new LiteDatabase(_dbConStr))
+            {
+                return db.GetCollection<Member>("Members").FindOne(x => x.Username == username && x.Password == password);
+            }
+        }
+
         public void Add(Member member)
         {
+            member.Id = Guid.NewGuid().ToString();
             using (var db = new LiteDatabase(_dbConStr))
             {
                 var collection = db.GetCollection<Member>("Members");

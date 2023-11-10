@@ -25,7 +25,7 @@ namespace ivnet.club.services.api.Services
 
         public void Setup()
         {
-            LoadClubCodes();
+            LoadClubs();
             LoadSA();
             LoadMemberRoles();
             SetMemberRoles();
@@ -38,23 +38,23 @@ namespace ivnet.club.services.api.Services
 
         private void LoadSA()
         {
-            var clubCodes = GetClubCodes();
+            var clubs = GetClubs();
 
             using (var db = new LiteDatabase(_dbConStr))
             {
                 var collection = db.GetCollection<Member>("Members");
                 collection.DeleteAll();
 
-                foreach (ClubCode clubCode in clubCodes)
+                foreach (Club club in clubs)
                 {
                     var user = new Member
                     {
                         Id = Guid.NewGuid().ToString(),
-                        Username = $"SA{clubCode.Code}",
+                        Username = $"SA{club.Code}",
                         Password = "'nDTa6VN5W/sSl0TIoQrJgg=='",
-                        ClubCode = clubCode.Code,
-                        ClubName = clubCode.Name,
-                        Fullname = $"SA{clubCode.Code}",
+                        ClubCode = club.Code,
+                        ClubName = club.Name,
+                        Fullname = $"SA{club.Code}",
                         Email = _saEmail
                     };
 
@@ -63,18 +63,18 @@ namespace ivnet.club.services.api.Services
             }
         }
 
-        private void LoadClubCodes()
+        private void LoadClubs()
         {
-            var clubCodes = GetClubCodes();
+            var clubs = GetClubs();
 
             using (var db = new LiteDatabase(_dbConStr))
             {
-                var collection = db.GetCollection<ClubCode>("ClubCodes");
+                var collection = db.GetCollection<Club>("Clubs");
                 collection.DeleteAll();
 
-                foreach (ClubCode clubCode in clubCodes)
+                foreach (Club club in clubs)
                 {
-                    collection.Insert(clubCode);
+                    collection.Insert(club);
                 }
             }
         }
@@ -134,17 +134,17 @@ namespace ivnet.club.services.api.Services
             }
         }
 
-        private List<ClubCode> GetClubCodes()
+        private List<Club> GetClubs()
         {
-            return new List<ClubCode>
+            return new List<Club>
                 {
-                    new ClubCode
+                    new Club
                     {
                        Id = Guid.NewGuid().ToString(),
                         Code="TLBC01",
                         Name="Tring Lawn Bowls Club"
                     },
-                    new ClubCode
+                    new Club
                     {
                        Id = Guid.NewGuid().ToString(),
                         Code="FHIBC",

@@ -1,4 +1,5 @@
 ﻿using ivnet.club.services.api.Services;
+using ivnet.club.services.api.Services.Interfaces;
 using System;
 using System.Web.Http;
 
@@ -6,7 +7,7 @@ namespace ivnet.club.services.api.Controllers
 {
     public class ConfgController : ApiController
     {
-        private readonly ConfigDataService _dataService;
+        private readonly IConfigDataService _dataService;
 
         public ConfgController(ConfigDataService dataService)
         {

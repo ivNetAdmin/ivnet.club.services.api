@@ -22,7 +22,7 @@ namespace ivnet.club.services.api
 
             containerbuilder.RegisterType<ConfigDataService>().AsSelf();
             containerbuilder.RegisterType<RinkBookingDataService>().AsSelf();
-            containerbuilder.RegisterType<ClubCodeDataService>().AsSelf();
+            containerbuilder.RegisterType<ClubDataService>().AsSelf();
             containerbuilder.RegisterType<MemberDataService>().AsSelf();
             
             var container = containerbuilder.Build();

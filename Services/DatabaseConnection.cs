@@ -8,7 +8,7 @@ namespace ivnet.club.services.api.Services
         {
             get
             {
-                var folder = System.AppContext.BaseDirectory;
+               var folder = System.AppContext.BaseDirectory;
                 var dbConStr = ConfigurationManager.ConnectionStrings["liteDbConStr"].ConnectionString;
 
                 folder = folder.Replace(@"www\", "");

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using LiteDB;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ivnet.club.services.api.Models
 {
@@ -10,7 +12,7 @@ namespace ivnet.club.services.api.Models
         [JsonProperty(PropertyName = "userName")]
         public string Username { get; set; }
       
-        [JsonProperty(PropertyName = "pw")]
+        [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
        
         [JsonProperty(PropertyName = "clubCode")]
@@ -32,5 +34,9 @@ namespace ivnet.club.services.api.Models
         
         [JsonProperty(PropertyName = "medical")]
         public string Medical { get; set; }
+        [JsonProperty(PropertyName = "auth")]
+        public string Auth { get; set; }
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using ivnet.club.services.api.Services;
+using ivnet.club.services.api.Services.Interfaces;
 using System;
 using System.Linq;
 using System.Net;
@@ -9,7 +10,7 @@ namespace ivnet.club.services.api.Controllers
 {
     public class RinkBookingsController : ApiController
     {
-        private readonly RinkBookingDataService _dataService;
+        private readonly IRinkBookingDataService _dataService;
 
         public RinkBookingsController(RinkBookingDataService dataService)
         {
