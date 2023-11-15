@@ -175,7 +175,7 @@ namespace ivnet.club.services.api.Controllers
         {
             var data = _dataService.FindById(id);
 
-            if (user.Password != data.Password)
+            if (user.Password != null)
             {
                 data.Password = user.Password;
             }
@@ -189,7 +189,10 @@ namespace ivnet.club.services.api.Controllers
 
             _dataService.Patch(data);
 
-            return Ok();
+            data.Password = string.Empty;
+            data.Email = string.Empty;
+
+            return Ok(data);
         }
     }
 }

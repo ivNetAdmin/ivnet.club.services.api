@@ -7,11 +7,11 @@ using System.Web.Http;
 
 namespace ivnet.club.services.api.Controllers
 {
-    public class ClubController : ApiController
+    public class ClubsController : ApiController
     {
         private readonly IClubDataService _dataService;
 
-        public ClubController(ClubDataService dataService)
+        public ClubsController(ClubDataService dataService)
         {
             _dataService = dataService;
         }

@@ -149,10 +149,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ClubController.cs" />
+    <Compile Include="Controllers\ClubsController.cs" />
     <Compile Include="Controllers\ConfgController.cs" />
     <Compile Include="Controllers\RinkBookingsController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\ClubServicesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -162,6 +163,7 @@
     <Compile Include="Models\RinkBooking.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ClubRole.cs" />
+    <Compile Include="Models\ClubService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ClubDataService.cs" />
     <Compile Include="Services\ConfigDataService.cs" />
@@ -169,6 +171,8 @@
     <Compile Include="Services\Interfaces\IClubDataService.cs" />
     <Compile Include="Services\Interfaces\IConfigDataService.cs" />
     <Compile Include="Services\Interfaces\IMemberDataService.cs" />
+    <Compile Include="Services\Interfaces\IClubServiceDataService.cs" />
+    <Compile Include="Services\ClubServiceDataService.cs" />
     <Compile Include="Services\RinkBookingDataService.cs" />
     <Compile Include="Services\Interfaces\IRinkBookingDataService.cs" />
     <Compile Include="Services\MemberDataService.cs" />

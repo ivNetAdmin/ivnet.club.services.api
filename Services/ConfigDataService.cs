@@ -26,9 +26,10 @@ namespace ivnet.club.services.api.Services
         public void Setup()
         {
             LoadClubs();
-            LoadSA();
-            LoadMemberRoles();
-            SetMemberRoles();
+            LoadClubServices();
+           // LoadSA();
+           // LoadMemberRoles();
+           // SetMemberRoles();
         }
 
         public void Test()
@@ -79,6 +80,21 @@ namespace ivnet.club.services.api.Services
             }
         }
 
+        private void LoadClubServices()
+        {
+            var services = GetServices();
+
+            using (var db = new LiteDatabase(_dbConStr))
+            {
+                var collection = db.GetCollection<ClubService>("ClubServices");
+                collection.DeleteAll();
+
+                foreach (ClubService service in services)
+                {
+                    collection.Insert(service);
+                }
+            }
+        }
         private void LoadMemberRoles()
         {
             var clubRoles = GetClubRoles();
@@ -149,6 +165,37 @@ namespace ivnet.club.services.api.Services
                        Id = Guid.NewGuid().ToString(),
                         Code="FHIBC",
                         Name="Foxhill Indoor Bowls Club"
+                    }
+            };
+        }
+
+        private List<ClubService> GetServices()
+        {
+            return new List<ClubService>
+                {
+                    new ClubService
+                    {
+                       Id = Guid.NewGuid().ToString(),
+                        Name="Rink Booking",
+                        Description="Book rinks and check schedule and availability",
+                        SVG="rinkBooking",
+                        Route="rink-booking"
+                    },
+                    new ClubService
+                    {
+                       Id = Guid.NewGuid().ToString(),
+                        Name="Fixtures",
+                        Description="Check schedule and update your availability to play",
+                        SVG="fixtures",
+                        Route="fixtures"
+                    },
+                     new ClubService
+                    {
+                       Id = Guid.NewGuid().ToString(),
+                        Name="My Information",
+                        Description="Update your dietary, medical and contact information. This information will only be used by match captains and catering teams",
+                        SVG="myInformation",
+                        Route="my-information"
                     }
             };
         }
