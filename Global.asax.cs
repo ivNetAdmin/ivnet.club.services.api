@@ -24,7 +24,9 @@ namespace ivnet.club.services.api
             containerbuilder.RegisterType<RinkBookingDataService>().AsSelf();
             containerbuilder.RegisterType<ClubDataService>().AsSelf();
             containerbuilder.RegisterType<MemberDataService>().AsSelf();
-            
+            containerbuilder.RegisterType<ClubServiceDataService>().AsSelf();
+            containerbuilder.RegisterType<FixtureDataService>().AsSelf();
+
             var container = containerbuilder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
 

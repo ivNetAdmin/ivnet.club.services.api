@@ -10,7 +10,7 @@ namespace ivnet.club.services.api.Startup
         {
             // Web API configuration and services
 
-            var corsAttr = new EnableCorsAttribute("http://localhost:5173, http://ivnet.co.uk", "*", "*");
+            var corsAttr = new EnableCorsAttribute("http://localhost:5173, http://ivnet.co.uk", headers: "*", methods: "*");
             config.EnableCors(corsAttr);
 
             // Web API routes
