@@ -179,7 +179,9 @@ namespace ivnet.club.services.api.Services
                         Name="Rink Booking",
                         Description="Book rinks and check schedule and availability",
                         SVG="rinkBooking",
-                        Route="rink-booking"
+                        Route="rink-booking",
+                        FooterRoute="admin-rink-booking",
+                        FooterRouteText="Admin"
                     },
                     new ClubService
                     {
@@ -187,15 +189,19 @@ namespace ivnet.club.services.api.Services
                         Name="Fixtures",
                         Description="Check schedule and update your availability to play",
                         SVG="fixtures",
-                        Route="fixtures"
+                        Route="fixtures",
+                        FooterRoute="/admin/fixtures",
+                        FooterRouteText="Admin"
                     },
                      new ClubService
                     {
                        Id = Guid.NewGuid().ToString(),
                         Name="My Information",
-                        Description="Update your dietary, medical and contact information. This information will only be used by match captains and catering teams",
+                        Description="Update dietary, medical and contact details. This data is only used by match captains and for catering",
                         SVG="myInformation",
-                        Route="my-information"
+                        Route="my-information",
+                        FooterRoute="pw-change",
+                        FooterRouteText="Change Password"
                     }
             };
         }

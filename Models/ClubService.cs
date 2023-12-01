@@ -18,5 +18,12 @@ namespace ivnet.club.services.api.Models
 
         [JsonProperty(PropertyName = "route")]
         public string Route { get; set; }
+
+        [JsonProperty(PropertyName = "footerroute")]
+        public string FooterRoute { get; set; }
+
+        [JsonProperty(PropertyName = "footerroutetext")]
+        public string FooterRouteText { get; set; }
+
     }
 }

@@ -219,4 +219,7 @@ C:\Users\bp\Source\Repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.a
 C:\Users\bp\Source\Repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.csproj.CopyComplete
 C:\Users\bp\Source\Repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.dll
 C:\Users\bp\Source\Repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.pdb
-C:\Users\bp\Source\Repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.csproj.AssemblyReference.cache
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\Swashbuckle.Core.dll
+C:\Users\bp\source\repos\ivnet.club.services.api\bin\WebActivatorEx.dll
+C:\Users\bp\source\repos\ivnet.club.services.api\obj\Debug\ivnet.club.services.api.csproj.AssemblyReference.cache
