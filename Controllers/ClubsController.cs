@@ -2,7 +2,9 @@
 using ivnet.club.services.api.Models;
 using ivnet.club.services.api.Services;
 using ivnet.club.services.api.Services.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace ivnet.club.services.api.Controllers
@@ -17,24 +19,71 @@ namespace ivnet.club.services.api.Controllers
         }
 
         [Route("clubs")]
-        public IEnumerable<Club> Get()
+        public IHttpActionResult Get()
         {
-            return _dataService.FindAll();
+            try
+            {
+                var clubs = _dataService.FindAll();
+                if (clubs != null && clubs.Any())
+                {
+                    return Ok(clubs);
+                }
+                else {
+                    return NotFound();
+                }   
+            }catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
        
         [Route("clubs/{id}")]
-        public Club Get(string id)
+        public IHttpActionResult Get(string id)
         {
-            return _dataService.FindById(id);
+            try
+            {
+                var club = _dataService.FindById(id);
+                if (club != null)
+                {
+                    return Ok(club);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+   
         }
 
         [Route("clubs/code/{code}")]
-        public Club GetByCode(string code)
+        public IHttpActionResult GetByCode(string code)
         {
-            string bearerToken = Request.Headers.Authorization.Parameter;
-            var auth = JWTHelper.ValidateCurrentToken(bearerToken);
+            try
+            {
+                string bearerToken = Request.Headers.Authorization.Parameter;
+                if(JWTHelper.ValidateCurrentToken(bearerToken))
+                {
+                    var club = _dataService.FindByCode(code);
+                    if (club != null)
+                    {
+                        return Ok(club);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
 
-            return _dataService.FindByCode(code);
+                return Unauthorized();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

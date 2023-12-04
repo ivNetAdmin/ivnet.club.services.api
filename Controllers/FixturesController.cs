@@ -1,7 +1,6 @@
-﻿using ivnet.club.services.api.Models;
-using ivnet.club.services.api.Services;
+﻿using ivnet.club.services.api.Services;
 using ivnet.club.services.api.Services.Interfaces;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Web.Http;
 
@@ -18,18 +17,32 @@ namespace ivnet.club.services.api.Controllers
 
         [Route("fixtures")]
         [HttpGet]
-        public IEnumerable<Fixture> Get()
+        public IHttpActionResult Get()
         {
-
-            var fixtures =  _dataService.FindAll();
-
-            if (fixtures != null && fixtures.Any())
+            try
             {
-                return fixtures;
+                var fixtures = _dataService.FindAll();
+
+                if (fixtures == null && !fixtures.Any())
+                {
+
+                    if (_dataService.BuildAll())
+                        fixtures = _dataService.FindAll();
+                }
+
+                if (fixtures != null && fixtures.Any())
+                {
+                    return Ok(fixtures);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                return _dataService.BuildAll();
+                return InternalServerError(ex);
             }
         }
     }

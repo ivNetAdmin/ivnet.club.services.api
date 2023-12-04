@@ -1,16 +1,19 @@
 ﻿using ivnet.club.services.api.Models;
 using ivnet.club.services.api.Services.Interfaces;
 using LiteDB;
+using System;
 using System.Collections.Generic;
 
 namespace ivnet.club.services.api.Services
 {
     public class ClubServiceDataService : IClubServiceDataService
     {
+        private readonly ILogDataService _logService;
         private string _dbConStr;
 
-        public ClubServiceDataService()
+        public ClubServiceDataService(LogDataService logService)
         {
+            _logService = logService;
             _dbConStr = DatabaseConnection.Location;
         }
 
@@ -18,7 +21,15 @@ namespace ivnet.club.services.api.Services
         {
             using (var db = new LiteDatabase(_dbConStr))
             {
-                return db.GetCollection<ClubService>("ClubServices").FindAll();
+                try
+                {
+                    return db.GetCollection<ClubService>("ClubServices").FindAll();
+                }
+                catch (Exception ex)
+                {
+                    _logService.LogError(ex);
+                    throw ex;
+                }
             }
         }
     }

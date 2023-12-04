@@ -173,6 +173,7 @@
     <Compile Include="Helpers\JWTHelper.cs" />
     <Compile Include="Helpers\XElementExtension.cs" />
     <Compile Include="Models\Club.cs" />
+    <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Models\Fixture.cs" />
     <Compile Include="Models\MemberClubRole.cs" />
     <Compile Include="Models\RinkBooking.cs" />
@@ -188,9 +189,11 @@
     <Compile Include="Services\Interfaces\IClubDataService.cs" />
     <Compile Include="Services\Interfaces\IConfigDataService.cs" />
     <Compile Include="Services\Interfaces\IFixtureDataService.cs" />
+    <Compile Include="Services\Interfaces\ILogDataService.cs" />
     <Compile Include="Services\Interfaces\IMemberDataService.cs" />
     <Compile Include="Services\Interfaces\IClubServiceDataService.cs" />
     <Compile Include="Services\ClubServiceDataService.cs" />
+    <Compile Include="Services\LogDataService.cs" />
     <Compile Include="Services\RinkBookingDataService.cs" />
     <Compile Include="Services\Interfaces\IRinkBookingDataService.cs" />
     <Compile Include="Services\MemberDataService.cs" />

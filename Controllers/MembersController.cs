@@ -22,17 +22,32 @@ namespace ivnet.club.services.api.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var memberList = new List<Member>();
-            var members = _dataService.FindAll();
-            
-            foreach(Member member in members)
+            try
             {
-                member.Password = string.Empty;
-                member.Email = string.Empty;
-                memberList.Add(member);
+                var members = _dataService.FindAll();
+
+                if (members != null && members.Any())
+                {
+                    var memberList = new List<Member>();
+                    foreach (Member member in members)
+                    {
+                        member.Password = string.Empty;
+                        member.Email = string.Empty;
+                        memberList.Add(member);
+                    }
+
+                    return Ok(memberList);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }catch(Exception ex)
+            {
+                return InternalServerError(ex);
             }
 
-            return Ok(memberList);
+            
         }
 
         [Route("members/{id}")]
@@ -124,7 +139,14 @@ namespace ivnet.club.services.api.Controllers
             try
             {
                 var members = _dataService.FindByClubCode(clubcode);
-                return Ok(members);
+                if (members != null && members.Any())
+                {
+                    return Ok(members);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
             catch (Exception ex)
             {
@@ -161,18 +183,25 @@ namespace ivnet.club.services.api.Controllers
         [HttpPost]
         public IHttpActionResult Post(Member member)
         {
-            _dataService.Add(member);
+            try
+            {
+                _dataService.Add(member);
 
-            member.Auth = JWTHelper.GenerateToken(member.Id);
-            member.Password = string.Empty;
-            member.Email = string.Empty;
-            return Ok(member);
+                member.Auth = JWTHelper.GenerateToken(member.Id);
+                member.Password = string.Empty;
+                member.Email = string.Empty;
+                return Ok(member);
+            }catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         [Route("members/{id}")]
         [HttpPatch]
         public IHttpActionResult Patch(string id, Member user)
         {
+            try { 
             var data = _dataService.FindById(id);
 
             if (user.Password != null)
@@ -193,6 +222,11 @@ namespace ivnet.club.services.api.Controllers
             data.Email = string.Empty;
 
             return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

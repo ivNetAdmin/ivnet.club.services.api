@@ -1,7 +1,9 @@
 ﻿using ivnet.club.services.api.Models;
 using ivnet.club.services.api.Services;
 using ivnet.club.services.api.Services.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 
@@ -17,9 +19,24 @@ namespace ivnet.club.services.api.Controllers
         }
 
         [Route("clubservices")]
-        public IEnumerable<ClubService> Get()
+        public IHttpActionResult Get()
         {
-            return _dataService.FindAll();
+            try
+            {
+                var clubservices = _dataService.FindAll();
+                if (clubservices != null && clubservices.Any())
+                {
+                    return Ok(clubservices);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

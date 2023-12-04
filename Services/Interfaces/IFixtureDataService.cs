@@ -6,6 +6,6 @@ namespace ivnet.club.services.api.Services.Interfaces
     public interface IFixtureDataService
     {
         IEnumerable<Fixture> FindAll();
-        IEnumerable<Fixture> BuildAll();
+        bool BuildAll();
     }
 }
