@@ -26,6 +26,7 @@ namespace ivnet.club.services.api
             containerbuilder.RegisterType<MemberDataService>().AsSelf();
             containerbuilder.RegisterType<ClubServiceDataService>().AsSelf();
             containerbuilder.RegisterType<FixtureDataService>().AsSelf();
+            containerbuilder.RegisterType<LogDataService>().AsSelf();
 
             var container = containerbuilder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);

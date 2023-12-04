@@ -8,9 +8,11 @@ namespace ivnet.club.services.api.Services
 {
     public class ClubDataService : IClubDataService
     {
+        private readonly ILogDataService _logService;
         private string _dbConStr;
-        public ClubDataService()
+        public ClubDataService(LogDataService logService)
         {
+            _logService = logService;
             _dbConStr = DatabaseConnection.Location;
         }
 
@@ -18,8 +20,14 @@ namespace ivnet.club.services.api.Services
         {
             using (var db = new LiteDatabase(_dbConStr))
             {
-                
-                return db.GetCollection<Club>("Clubs").FindAll();
+                try
+                {
+                    return db.GetCollection<Club>("Clubs").FindAll();
+                }catch(Exception ex)
+                {
+                    _logService.LogError(ex);
+                    throw ex;
+                }
             }
         }
 
@@ -27,7 +35,15 @@ namespace ivnet.club.services.api.Services
         {
             using (var db = new LiteDatabase(_dbConStr))
             {
-                return db.GetCollection<Club>("Clubs").FindById(id);
+                try
+                {
+                    return db.GetCollection<Club>("Clubs").FindById(id);
+                }
+                catch (Exception ex)
+                {
+                    _logService.LogError(ex);
+                    throw ex;
+                }
             }
         }
 
@@ -35,7 +51,15 @@ namespace ivnet.club.services.api.Services
         {
             using (var db = new LiteDatabase(_dbConStr))
             {
-                return db.GetCollection<Club>("Clubs").FindOne(Query.EQ("Code", code));
+                try
+                {
+                    return db.GetCollection<Club>("Clubs").FindOne(Query.EQ("Code", code));
+                }
+                catch (Exception ex)
+                {
+                    _logService.LogError(ex);
+                    throw ex;
+                }
             }
         }
     }
