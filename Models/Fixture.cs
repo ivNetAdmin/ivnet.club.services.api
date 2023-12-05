@@ -7,7 +7,7 @@ namespace ivnet.club.services.api.Models
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "date")] 
+        [JsonProperty(PropertyName = "date")]
         public string Date { get; set; }
 
         [JsonProperty(PropertyName = "time")]
@@ -21,5 +21,8 @@ namespace ivnet.club.services.api.Models
 
         [JsonProperty(PropertyName = "kit")]
         public string Kit { get; set; }
+
+        [JsonProperty(PropertyName = "trips")]
+        public string Trips { get; set; }
     }
 }
