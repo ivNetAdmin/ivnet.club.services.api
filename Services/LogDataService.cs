@@ -19,7 +19,7 @@ namespace ivnet.club.services.api.Services
             {
                 Id = Guid.NewGuid().ToString(),
                 Message = ex.Message,
-                InnerMessage = ex.InnerException.Message,
+                InnerMessage = ex.InnerException == null ? string.Empty : ex.InnerException.Message,
                 Service = ex.TargetSite.DeclaringType.Name,
                 Method = ex.TargetSite.Name
             };

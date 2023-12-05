@@ -64,6 +64,8 @@ namespace ivnet.club.services.api.Controllers
         {
             try
             {
+                if (Request.Headers.Authorization == null) return Unauthorized();
+
                 string bearerToken = Request.Headers.Authorization.Parameter;
                 if(JWTHelper.ValidateCurrentToken(bearerToken))
                 {

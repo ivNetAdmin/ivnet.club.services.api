@@ -1,4 +1,6 @@
 ﻿using ivnet.club.services.api.Models;
+using ivnet.club.services.api.Services;
+using ivnet.club.services.api.Services.Interfaces;
 using System;
 using System.IO;
 using System.Net;
@@ -11,9 +13,10 @@ namespace ivnet.club.services.api.Controllers
 {
     public class FileUploadController : ApiController
     {
-        public FileUploadController()
+        private readonly IFixtureDataService _dataService;
+        public FileUploadController(FixtureDataService dataService)
         {
-
+            _dataService = dataService;
         }
 
         [Route("fileupload/{content}")]
@@ -39,8 +42,16 @@ namespace ivnet.club.services.api.Controllers
                     );
 
                     file.SaveAs(path);
+
+                    _dataService.Clear();
+
+                    return Ok($"/uploads/{file.FileName}");
                 }
-                return Ok($"/uploads/{file.FileName}");
+                else
+                {
+                    throw new Exception("File Empty");
+                }
+                
             }
             catch (Exception ex)
             {

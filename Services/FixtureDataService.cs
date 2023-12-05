@@ -36,6 +36,22 @@ namespace ivnet.club.services.api.Services
             }
         }
 
+        public Fixture FindById(string id)
+        {
+            using (var db = new LiteDatabase(_dbConStr))
+            {
+                try
+                {
+                    return db.GetCollection<Fixture>("Fixtures").FindById(id);
+                }
+                catch (Exception ex)
+                {
+                    _logService.LogError(ex);
+                    throw ex;
+                }
+            }
+        }
+
         public bool BuildAll()
         {
             try
@@ -67,7 +83,8 @@ namespace ivnet.club.services.api.Services
                                 Time = fixtureXml.SelectSingleNode("Time").InnerText,
                                 Opponent = fixtureXml.SelectSingleNode("Opponent").InnerText,
                                 HomeOrAway = fixtureXml.SelectSingleNode("HomeOrAway").InnerText,
-                                Kit = fixtureXml.SelectSingleNode("Kit").InnerText
+                                Kit = fixtureXml.SelectSingleNode("Kit").InnerText,
+                                Trips = fixtureXml.SelectSingleNode("Trips").InnerText
                             };
 
                             collection.Insert(fixture);
@@ -75,7 +92,40 @@ namespace ivnet.club.services.api.Services
                         catch (Exception) { }
                     }
 
-                    return ((ICollection<Fixture>)collection).Count > 0;
+                    return collection.Count() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logService.LogError(ex);
+                throw ex;
+            }
+        }
+        public void Patch(Fixture fixture)
+        {
+            using (var db = new LiteDatabase(_dbConStr))
+            {
+                try
+                {
+                    var collection = db.GetCollection<Fixture>("Fixtures");
+                    collection.Update(fixture);
+                }
+                catch (Exception ex)
+                {
+                    _logService.LogError(ex);
+                    throw ex;
+                }
+            }
+        }
+
+        public void Clear()
+        {
+            try
+            {
+                using (var db = new LiteDatabase(_dbConStr))
+                {
+                    var collection = db.GetCollection<Fixture>("Fixtures");
+                    collection.DeleteAll();
                 }
             }
             catch (Exception ex)
